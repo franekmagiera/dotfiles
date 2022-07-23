@@ -7,6 +7,8 @@ brew bundle install --file=${BASEDIR}/Brewfile
 pyenv install 3.10.5
 pyenv global 3.10.5
 
+pip install codespell
+
 # Linking dotfiles.
 ln -sfv ${BASEDIR}/inputrc ~/.inputrc
 
