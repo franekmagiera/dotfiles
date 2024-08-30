@@ -114,7 +114,7 @@ map <leader>sa zg
 map <leader>s? z=
 
 " Turn off highlighting
-map <leader><cr> :nohl
+map <leader><cr> :nohl<CR>
 
 set number relativenumber
 set nu rnu
