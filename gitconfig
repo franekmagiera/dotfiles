@@ -3,3 +3,5 @@
 	email = framagie@gmail.com
 [core]
 	excludesfile = ~/.gitignore
+[init]
+	defaultBranch = main

@@ -105,6 +105,7 @@ set laststatus=2
 map 0 ^
 
 " Pressing ,ss will toggle and untoggle spell checking
+" Press z= for spellchecker suggestions.
 map <leader>ss :setlocal spell!<cr>
 
 " Shortcuts using <leader>
