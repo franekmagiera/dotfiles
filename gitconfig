@@ -5,3 +5,6 @@
 	excludesfile = ~/.gitignore
 [init]
 	defaultBranch = main
+[help]
+    autocorrect = prompt
+
