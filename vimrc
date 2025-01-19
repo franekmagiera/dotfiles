@@ -108,7 +108,7 @@ map 0 ^
 " Press z= for spellchecker suggestions.
 map <leader>ss :setlocal spell!<cr>
 
-" Shortcuts using <leader>
+" Shortcuts using <leader> for spellchecking
 map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
