@@ -7,4 +7,13 @@
 	defaultBranch = main
 [help]
     autocorrect = prompt
+[ui "color"]
+	ui = always
+[color]
+	ui = true
+[diff]
+	algorithm = histogram
+	indentHeuristic = true
+[merge]
+	tool = nvim -d
 
