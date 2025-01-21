@@ -20,3 +20,6 @@ ln -sfv ${BASEDIR}/init.lua ~/.config/nvim/init.lua
 ln -sfv ${BASEDIR}/gitconfig ~/.gitconfig
 ln -sfv ${BASEDIR}/gitignore ~/.gitignore
 
+# ghostty
+ln -sfv ${BASEDIR}/ghostty ~/.config/ghostty/config
+
