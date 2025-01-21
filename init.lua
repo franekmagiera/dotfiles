@@ -90,9 +90,9 @@ vim.keymap.set('n', '<leader>w', ':w<cr>')
 -- Easier auto suggestions.
 vim.keymap.set('i', 'NN', '<C-n>')
 
--------------------
+--------------------
 -- Auto commands. --
--------------------
+--------------------
 -- Highlight yanked text.
 vim.api.nvim_create_autocmd(
 	'TextYankPost',
@@ -118,6 +118,40 @@ vim.api.nvim_create_autocmd(
 		end
 	}
 )
+
+--------------
+-- Plugins. --
+--------------
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+	spec = {
+		{
+			'sainnhe/gruvbox-material',
+			lazy = false,
+			priority = 1000,
+			config = function()
+				vim.g.gruvbox_material_disable_italic_comment = true
+				vim.cmd.colorscheme('gruvbox-material')
+			end
+		}
+	},
+})
 
 -- Python.
 vim.g.python3_host_prog = '/Users/franek/.pyenv/shims/python3'
