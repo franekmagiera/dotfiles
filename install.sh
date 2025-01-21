@@ -13,6 +13,7 @@ ln -sfv ${BASEDIR}/vimrc ~/.ideavimrc
 
 # nvim
 ln -sfv ${BASEDIR}/init.lua ~/.config/nvim/init.lua
+ln -sfv ${BASEDIR}/lazy-lock.json ~/.config/nvim/lazy-lock.json
 
 # git
 ln -sfv ${BASEDIR}/gitconfig ~/.gitconfig
