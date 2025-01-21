@@ -88,7 +88,7 @@ vim.keymap.set('n', '<leader>s?', 'z=')
 vim.keymap.set('n', '<leader>w', ':w<cr>')
 
 -- Easier auto suggestions.
-vim.keymap.set('i', 'nn', '<C-n>')
+vim.keymap.set('i', 'NN', '<C-n>')
 
 -------------------
 -- Auto commands. --
