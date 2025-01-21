@@ -87,8 +87,11 @@ vim.keymap.set('n', '<leader>s?', 'z=')
 -- Fast writing.
 vim.keymap.set('n', '<leader>w', ':w<cr>')
 
+-- Easier auto suggestions.
+vim.keymap.set('i', 'nn', '<C-n>')
+
 -------------------
--- Autocommands. --
+-- Auto commands. --
 -------------------
 -- Highlight yanked text.
 vim.api.nvim_create_autocmd(
