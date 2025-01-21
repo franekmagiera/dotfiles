@@ -11,6 +11,8 @@ end
 
 set -g fish_greeting
 
+set -g HOMEBREW_PREFIX /opt/homebrew/
+fish_add_path  /opt/homebrew/bin
 [ -f $HOMEBREW_PREFIX/share/autojump/autojump.fish ]; and source $HOMEBREW_PREFIX/share/autojump/autojump.fish
 
 pyenv init - | source
