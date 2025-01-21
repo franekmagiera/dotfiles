@@ -3,5 +3,4 @@ command = /opt/homebrew/bin/fish --login --interactive
 shell-integration = fish
 copy-on-select = true
 auto-update = check
-macos-option-as-alt = true
 
