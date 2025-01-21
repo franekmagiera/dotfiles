@@ -1,5 +1,4 @@
 #!/bin/bash
-
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 brew bundle install --file=${BASEDIR}/Brewfile
@@ -22,4 +21,8 @@ ln -sfv ${BASEDIR}/gitignore ~/.gitignore
 
 # ghostty
 ln -sfv ${BASEDIR}/ghostty/config ~/.config/ghostty/config
+
+# fish
+ln -sfv ${BASEDIR}/fish/config.fish ~/.config/fish/config.fish
+ln -sfv ${BASEDIR}/fish/functions/* ~/.config/fish/functions
 
