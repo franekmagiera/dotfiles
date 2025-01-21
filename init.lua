@@ -82,3 +82,7 @@ vim.keymap.set('n', '<leader>sa', 'zg')
 -- Show suggestions.
 vim.keymap.set('n', '<leader>s?', 'z=')
 
+-- Python.
+vim.g.python3_host_prog = '/Users/franek/.pyenv/shims/python3'
+vim.g.python_host_prog = '/Users/franek/.pyenv/shims/python'
+
