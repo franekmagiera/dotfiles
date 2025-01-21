@@ -11,8 +11,10 @@ pyenv global 3.13
 ln -sfv ${BASEDIR}/inputrc ~/.inputrc
 
 # vim
-ln -sfv ${BASEDIR}/vimrc ~/.vimrc
 ln -sfv ${BASEDIR}/vimrc ~/.ideavimrc
+
+# nvim
+ln -sfv ${BASEDIR}/init.lua ~/.config/nvim/init.lua
 
 # git
 ln -sfv ${BASEDIR}/gitconfig ~/.gitconfig
