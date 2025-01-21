@@ -6,7 +6,6 @@ brew bundle install --file=${BASEDIR}/Brewfile
 pyenv install 3.13
 pyenv global 3.13
 
-# Linking dotfiles.
 ln -sfv ${BASEDIR}/inputrc ~/.inputrc
 
 # vim
