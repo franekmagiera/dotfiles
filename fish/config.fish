@@ -1,6 +1,5 @@
 abbr -a e nvim
 abbr -a g git
-abbr -a gc 'git commit -m'
 abbr -a ga 'git add --patch'
 abbr -a gst 'git status --short'
 abbr -a glo 'git log --oneline'
