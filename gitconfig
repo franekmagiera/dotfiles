@@ -1,19 +1,22 @@
 [user]
-	name = franekmagiera
-	email = framagie@gmail.com
+    name = franekmagiera
+    email = framagie@gmail.com
 [core]
-	excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [help]
     autocorrect = prompt
 [ui "color"]
-	ui = always
+    ui = always
 [color]
-	ui = true
+    ui = true
 [diff]
-	algorithm = histogram
-	indentHeuristic = true
+    algorithm = histogram
+    indentHeuristic = true
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 [merge]
-	tool = nvim -d
+    tool = nvim -d
 
