@@ -18,4 +18,5 @@ fish_add_path  /opt/homebrew/bin
 [ -f $HOMEBREW_PREFIX/share/autojump/autojump.fish ]; and source $HOMEBREW_PREFIX/share/autojump/autojump.fish
 
 pyenv init - | source
+fzf --fish | source
 
