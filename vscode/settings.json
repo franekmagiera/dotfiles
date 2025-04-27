@@ -18,4 +18,5 @@
         "asvetliakov.vscode-neovim": 1
     },
     "zenMode.hideLineNumbers": false,
+    "terminal.integrated.defaultProfile.osx": "fish",
 }
