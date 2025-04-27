@@ -1,0 +1,21 @@
+{
+    "workbench.tree.indent": 16,
+    "editor.lineNumbers": "relative",
+    "editor.fontSize": 12,
+    "editor.cursorSurroundingLines": 7,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "editor.minimap.enabled": false,
+    "makefile.configureOnOpen": true,
+    "workbench.colorTheme": "Gruvbox Material Dark",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "zenMode.hideLineNumbers": false,
+}
