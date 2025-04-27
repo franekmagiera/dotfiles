@@ -122,44 +122,46 @@ vim.api.nvim_create_autocmd(
 --------------
 -- Plugins. --
 --------------
--- Bootstrap lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-	if vim.v.shell_error ~= 0 then
-		vim.api.nvim_echo({
-			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-			{ out, "WarningMsg" },
-			{ "\nPress any key to exit..." },
-		}, true, {})
-		vim.fn.getchar()
-		os.exit(1)
+if (not vim.g.vscode) then
+	-- Bootstrap lazy.nvim
+	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+	if not (vim.uv or vim.loop).fs_stat(lazypath) then
+		local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+		local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+		if vim.v.shell_error ~= 0 then
+			vim.api.nvim_echo({
+				{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+				{ out, "WarningMsg" },
+				{ "\nPress any key to exit..." },
+			}, true, {})
+			vim.fn.getchar()
+			os.exit(1)
+		end
 	end
-end
-vim.opt.rtp:prepend(lazypath)
+	vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-	spec = {
-		{
-			'sainnhe/gruvbox-material',
-			lazy = false,
-			priority = 1000,
-			config = function()
-				vim.g.gruvbox_material_disable_italic_comment = true
-				vim.cmd.colorscheme('gruvbox-material')
-			end
+	require("lazy").setup({
+		spec = {
+			{
+				'sainnhe/gruvbox-material',
+				lazy = false,
+				priority = 1000,
+				config = function()
+					vim.g.gruvbox_material_disable_italic_comment = true
+					vim.cmd.colorscheme('gruvbox-material')
+				end
+			},
+			{
+				"ibhagwan/fzf-lua",
+				-- optional for icon support
+				dependencies = { "nvim-tree/nvim-web-devicons" },
+				-- or if using mini.icons/mini.nvim
+				-- dependencies = { "echasnovski/mini.icons" },
+				opts = {}
+			}
 		},
-		{
-			"ibhagwan/fzf-lua",
-			-- optional for icon support
-			dependencies = { "nvim-tree/nvim-web-devicons" },
-			-- or if using mini.icons/mini.nvim
-			-- dependencies = { "echasnovski/mini.icons" },
-			opts = {}
-		}
-	},
-})
+	})
+end
 
 -- Python.
 vim.g.python3_host_prog = '~/.pyenv/shims/python3'
