@@ -17,4 +17,5 @@ brew "xz"
 brew "zig"
 brew "zlib"
 cask "ghostty"
+cask "visual-studio-code"
 
