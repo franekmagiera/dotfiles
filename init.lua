@@ -182,7 +182,13 @@ if (not vim.g.vscode) then
 				-- or if using mini.icons/mini.nvim
 				-- dependencies = { "echasnovski/mini.icons" },
 				opts = {}
-			}
+			},
+            {
+                'echasnovski/mini.pairs',
+                event = 'VeryLazy',
+                version = 'false',
+                opts = {}
+            },
 		},
 	})
 end
