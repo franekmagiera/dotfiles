@@ -79,6 +79,7 @@ vim.keymap.set('n', '<leader>ss', ':setlocal spell!<cr>')
 
 vim.keymap.set('n', '<leader>sn', ']s')
 vim.keymap.set('n', '<leader>sp', '[s')
+
 -- Add the word to the dictionary.
 vim.keymap.set('n', '<leader>sa', 'zg')
 -- Show suggestions.
@@ -89,6 +90,29 @@ vim.keymap.set('n', '<leader>w', ':w<cr>')
 
 -- Easier auto suggestions.
 vim.keymap.set('i', 'NN', '<C-n>')
+
+-- Toggle between buffers.
+vim.keymap.set('n', '<leader><leader>', '<c-^>')
+
+-- Always center search results
+vim.keymap.set('n', 'n', 'nzz', { silent = true })
+vim.keymap.set('n', 'N', 'Nzz', { silent = true })
+vim.keymap.set('n', '*', '*zz', { silent = true })
+vim.keymap.set('n', '#', '#zz', { silent = true })
+vim.keymap.set('n', 'g*', 'g*zz', { silent = true })
+
+-- Switch buffers with arrows.
+vim.keymap.set('n', '<left>', ':bp<cr>')
+vim.keymap.set('n', '<right>', ':bn<cr>')
+
+-- Show/hide hidden characters.
+vim.keymap.set('n', '<leader>,', ':set invlist<cr>')
+
+-- Those need fzf and fzf-lua:
+-- Quick-open files.
+vim.keymap.set('', '<C-p>', '<cmd>FzfLua files<cr>')
+-- Search buffers.
+vim.keymap.set('n', '<leader>;', '<cmd>FzfLua buffers<cr>')
 
 --------------------
 -- Auto commands. --
