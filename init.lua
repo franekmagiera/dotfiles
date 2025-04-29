@@ -119,78 +119,78 @@ vim.keymap.set('n', '<leader>;', '<cmd>FzfLua buffers<cr>')
 --------------------
 -- Highlight yanked text.
 vim.api.nvim_create_autocmd(
-	'TextYankPost',
-	{
-		pattern = '*',
-		command = 'silent! lua vim.highlight.on_yank({ timeout = 500 })'
-	}
+    'TextYankPost',
+    {
+        pattern = '*',
+        command = 'silent! lua vim.highlight.on_yank({ timeout = 500 })'
+    }
 )
 
 -- Jump to last edit position on opening file.
 vim.api.nvim_create_autocmd(
-	'BufReadPost',
-	{
-		pattern = '*',
-		callback = function(ev)
-			if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
-				-- Except for in git commit messages.
-				-- https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
-				if not vim.fn.expand('%:p'):find('.git', 1, true) then
-					vim.cmd('exe "normal! g\'\\""')
-				end
-			end
-		end
-	}
+    'BufReadPost',
+    {
+        pattern = '*',
+        callback = function(ev)
+            if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
+                -- Except for in git commit messages.
+                -- https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
+                if not vim.fn.expand('%:p'):find('.git', 1, true) then
+                    vim.cmd('exe "normal! g\'\\""')
+                end
+            end
+        end
+    }
 )
 
 --------------
 -- Plugins. --
 --------------
 if (not vim.g.vscode) then
-	-- Bootstrap lazy.nvim
-	local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-	if not (vim.uv or vim.loop).fs_stat(lazypath) then
-		local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-		local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-		if vim.v.shell_error ~= 0 then
-			vim.api.nvim_echo({
-				{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-				{ out, "WarningMsg" },
-				{ "\nPress any key to exit..." },
-			}, true, {})
-			vim.fn.getchar()
-			os.exit(1)
-		end
-	end
-	vim.opt.rtp:prepend(lazypath)
+    -- Bootstrap lazy.nvim
+    local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+    if not (vim.uv or vim.loop).fs_stat(lazypath) then
+        local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+        local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+        if vim.v.shell_error ~= 0 then
+            vim.api.nvim_echo({
+                { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+                { out, "WarningMsg" },
+                { "\nPress any key to exit..." },
+            }, true, {})
+            vim.fn.getchar()
+            os.exit(1)
+        end
+    end
+    vim.opt.rtp:prepend(lazypath)
 
-	require("lazy").setup({
-		spec = {
-			{
-				'sainnhe/gruvbox-material',
-				lazy = false,
-				priority = 1000,
-				config = function()
-					vim.g.gruvbox_material_disable_italic_comment = true
-					vim.cmd.colorscheme('gruvbox-material')
-				end
-			},
-			{
-				"ibhagwan/fzf-lua",
-				-- optional for icon support
-				dependencies = { "nvim-tree/nvim-web-devicons" },
-				-- or if using mini.icons/mini.nvim
-				-- dependencies = { "echasnovski/mini.icons" },
-				opts = {}
-			},
+    require("lazy").setup({
+        spec = {
+            {
+                'sainnhe/gruvbox-material',
+                lazy = false,
+                priority = 1000,
+                config = function()
+                    vim.g.gruvbox_material_disable_italic_comment = true
+                    vim.cmd.colorscheme('gruvbox-material')
+                end
+            },
+            {
+                "ibhagwan/fzf-lua",
+                -- optional for icon support
+                dependencies = { "nvim-tree/nvim-web-devicons" },
+                -- or if using mini.icons/mini.nvim
+                -- dependencies = { "echasnovski/mini.icons" },
+                opts = {}
+            },
             {
                 'echasnovski/mini.pairs',
                 event = 'VeryLazy',
                 version = 'false',
                 opts = {}
             },
-		},
-	})
+        },
+    })
 end
 
 -- Python.
