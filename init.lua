@@ -193,6 +193,82 @@ if (not vim.g.vscode) then
                 lazy = false,
                 opts = {}
             },
+            {
+                'neovim/nvim-lspconfig',
+                config = function()
+                    vim.lsp.enable('clangd')
+
+                    -- Kemaps.
+                    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+                    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+			        vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+                    vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist)
+                    vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition)
+                    vim.keymap.set('n', 'K', vim.lsp.buf.hover)
+                    vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename)
+                    vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action)
+                end
+            },
+            -- Inline function signatures.
+            {
+                "ray-x/lsp_signature.nvim",
+                event = "VeryLazy",
+                opts = {
+                    hint_prefix = {
+                        above = "↙ ",  -- when the hint is on the line above the current line
+                        current = "← ",  -- when the hint is on the same line
+                        below = "↖ "  -- when the hint is on the line below the current line
+                    },
+                },
+            },
+            -- LSP-based code-completion.
+            {
+                "hrsh7th/nvim-cmp",
+                -- Load cmp on InsertEnter.
+                event = "InsertEnter",
+                -- Dependencies are always lazy-loaded unless specified otherwise.
+                dependencies = {
+                    'neovim/nvim-lspconfig',
+                    "hrsh7th/cmp-nvim-lsp",
+                    "hrsh7th/cmp-buffer",
+                    "hrsh7th/cmp-path",
+                },
+                config = function()
+                    local cmp = require'cmp'
+                    cmp.setup({
+                        snippet = {
+                            -- nvim-cmp requires a snippet engine.
+                            expand = function(args)
+                                vim.snippet.expand(args.body)
+                            end,
+                        },
+                        mapping = cmp.mapping.preset.insert({
+                            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                            ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                            ['<C-Space>'] = cmp.mapping.complete(),
+                            ['<C-e>'] = cmp.mapping.abort(),
+                            -- Accept currently selected item.
+                            -- Set `select` to `false` to only confirm explicitly selected items.
+                            ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                        }),
+                        sources = cmp.config.sources({
+                            { name = 'nvim_lsp' },
+                        }, {
+                            { name = 'path' },
+                        }),
+                        experimental = {
+                            ghost_text = true,
+                        },
+                    })
+
+                    -- Enable completing paths in :
+                    cmp.setup.cmdline(':', {
+                        sources = cmp.config.sources({
+                            { name = 'path' }
+                        })
+                    })
+                end
+            },
         },
     })
 end
