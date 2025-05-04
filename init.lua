@@ -189,6 +189,11 @@ if (not vim.g.vscode) then
                 version = 'false',
                 opts = {}
             },
+            {
+                'lewis6991/gitsigns.nvim',
+                lazy = false,
+                opts = {}
+            },
         },
     })
 end
