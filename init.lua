@@ -75,10 +75,7 @@ vim.keymap.set('', 'H', '^')
 vim.keymap.set('', 'L', '$')
 
 -- Toggle spellchecking.
-vim.keymap.set('n', '<leader>ss', ':setlocal spell!<cr>')
-
-vim.keymap.set('n', '<leader>sn', ']s')
-vim.keymap.set('n', '<leader>sp', '[s')
+vim.keymap.set('n', '<leader>sc', ':setlocal spell!<cr>')
 
 -- Add the word to the dictionary.
 vim.keymap.set('n', '<leader>sa', 'zg')
@@ -110,9 +107,11 @@ vim.keymap.set('n', '<leader>,', ':set invlist<cr>')
 
 -- Those need fzf and fzf-lua:
 -- Quick-open files.
-vim.keymap.set('', '<C-p>', '<cmd>FzfLua files<cr>')
+vim.keymap.set('', '<leader>f', '<cmd>FzfLua files<cr>')
 -- Search buffers.
-vim.keymap.set('n', '<leader>;', '<cmd>FzfLua buffers<cr>')
+vim.keymap.set('n', '<leader>b', '<cmd>FzfLua buffers<cr>')
+-- Grep.
+vim.keymap.set('n', '<leader>g', '<cmd>FzfLua grep_project<cr>')
 
 --------------------
 -- Auto commands. --
