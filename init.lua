@@ -111,7 +111,7 @@ vim.keymap.set('', '<leader>f', '<cmd>FzfLua files<cr>')
 -- Search buffers.
 vim.keymap.set('n', '<leader>b', '<cmd>FzfLua buffers<cr>')
 -- Grep.
-vim.keymap.set('n', '<leader>g', '<cmd>FzfLua grep_project<cr>')
+vim.keymap.set('n', '<leader>gr', '<cmd>FzfLua grep_project<cr>')
 
 --------------------
 -- Auto commands. --
