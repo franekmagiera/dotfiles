@@ -3,4 +3,5 @@ shell-integration = fish
 copy-on-select = clipboard
 auto-update = check
 theme = GruvboxDark
+macos-option-as-alt = left
 
