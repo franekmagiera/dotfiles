@@ -1,10 +1,11 @@
 abbr -a e nvim
 abbr -a g git
 abbr -a ga 'git add --patch'
-abbr -a gst 'git status --short'
+abbr -a gs 'git status --short'
 abbr -a glo 'git log --oneline'
 abbr -a gd 'git diff'
 abbr -a gdc 'git diff --cached'
+abbr -a gdt 'git difftool'
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
