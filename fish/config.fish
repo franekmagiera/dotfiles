@@ -6,6 +6,7 @@ abbr -a glo 'git log --oneline'
 abbr -a gd 'git diff'
 abbr -a gdc 'git diff --cached'
 abbr -a gdt 'git difftool'
+abbr -a tree 'tree -C'
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
