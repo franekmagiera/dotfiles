@@ -19,3 +19,11 @@ fish_add_path  /opt/homebrew/bin
 pyenv init - | source
 fzf --fish | source
 
+set -Ux FZF_ALT_C_OPTS "\
+  --walker-skip .git,node_modules,target\
+  --preview 'tree -C {}'"
+
+set -Ux FZF_CTRL_T_OPTS "\
+  --walker-skip .git,node_modules,target\
+  --preview 'cat -n {}'"
+
