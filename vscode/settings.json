@@ -1,22 +1,20 @@
 {
-    "workbench.tree.indent": 16,
     "editor.lineNumbers": "relative",
     "editor.fontSize": 12,
     "editor.cursorSurroundingLines": 7,
     "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.minimap.enabled": false,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
     "files.exclude": {
         "**/.classpath": true,
         "**/.project": true,
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "editor.minimap.enabled": false,
-    "makefile.configureOnOpen": true,
+    "terminal.integrated.defaultProfile.osx": "fish"
     "workbench.colorTheme": "Gruvbox Material Dark",
-    "extensions.experimental.affinity": {
-        "asvetliakov.vscode-neovim": 1
-    },
+    "workbench.tree.indent": 16,
     "zenMode.hideLineNumbers": false,
-    "terminal.integrated.defaultProfile.osx": "fish",
 }
