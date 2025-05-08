@@ -17,5 +17,5 @@
     "terminal.integrated.defaultProfile.osx": "fish"
     "workbench.colorTheme": "Gruvbox Material Dark",
     "workbench.tree.indent": 16,
-    "zenMode.hideLineNumbers": false,
+    "zenMode.hideLineNumbers": false
 }
