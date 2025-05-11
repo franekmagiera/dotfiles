@@ -175,6 +175,18 @@ if (not vim.g.vscode) then
                 end
             },
             {
+                'ggandor/leap.nvim',
+                config = function()
+                    require('leap').create_default_mappings()
+                end
+            },
+            {
+                'andymass/vim-matchup',
+                config = function()
+                    vim.g.matchup_matchparen_offscreen = { method = "popup" }
+                end
+            },
+            {
                 "ibhagwan/fzf-lua",
                 -- optional for icon support
                 dependencies = { "nvim-tree/nvim-web-devicons" },
