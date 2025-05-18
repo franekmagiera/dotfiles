@@ -142,6 +142,11 @@ vim.api.nvim_create_autocmd(
     }
 )
 
+-- Needed to to appropriately highlight codefences returned from denols.
+vim.g.markdown_fenced_languages = {
+  "ts=typescript"
+}
+
 --------------
 -- Plugins. --
 --------------
@@ -209,6 +214,7 @@ if (not vim.g.vscode) then
                 'neovim/nvim-lspconfig',
                 config = function()
                     vim.lsp.enable('clangd')
+                    vim.lsp.enable('denols')
 
                     -- Kemaps.
                     vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
