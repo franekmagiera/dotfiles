@@ -216,14 +216,15 @@ if (not vim.g.vscode) then
                 options = { theme = 'gruvbox' },
                 config = function()
                     require("lualine").setup()
-                end
+                end,
             },
             {
                 'neovim/nvim-lspconfig',
                 config = function()
                     vim.lsp.enable('clangd')
-                    vim.lsp.enable('denols')
+                    -- vim.lsp.enable('denols')
                     vim.lsp.enable('pyright')
+                    vim.lsp.enable('ts_ls')
 
                     -- Kemaps.
                     vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
