@@ -211,6 +211,14 @@ if (not vim.g.vscode) then
                 opts = {}
             },
             {
+                'nvim-lualine/lualine.nvim',
+                dependencies = { 'nvim-tree/nvim-web-devicons' },
+                options = { theme = 'gruvbox' },
+                config = function()
+                    require("lualine").setup()
+                end
+            },
+            {
                 'neovim/nvim-lspconfig',
                 config = function()
                     vim.lsp.enable('clangd')
