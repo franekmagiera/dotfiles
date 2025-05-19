@@ -223,6 +223,7 @@ if (not vim.g.vscode) then
                 config = function()
                     vim.lsp.enable('clangd')
                     vim.lsp.enable('denols')
+                    vim.lsp.enable('pyright')
 
                     -- Kemaps.
                     vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
