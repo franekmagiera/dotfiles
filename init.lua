@@ -233,8 +233,13 @@ if (not vim.g.vscode) then
                     vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist)
                     vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition)
                     vim.keymap.set('n', 'K', vim.lsp.buf.hover)
+                    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
                     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename)
                     vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action)
+                    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+                    vim.keymap.set('n', '<leader>f', function()
+                        vim.lsp.buf.format { async = true }
+                    end, opts)
                 end
             },
             -- Inline function signatures.
