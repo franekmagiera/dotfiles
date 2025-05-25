@@ -302,6 +302,24 @@ if (not vim.g.vscode) then
                     })
                 end
             },
+            -- Treesitter for better syntax highlighting.
+            {
+                "nvim-treesitter/nvim-treesitter",
+                branch = 'master',
+                lazy = false,
+                build = ":TSUpdate",
+                config = function()
+                    local configs = require 'nvim-treesitter.configs'
+                    configs.setup {
+                        ensure_installed = {
+                            'python',
+                        },
+                        highlight = {
+                            enable = true
+                        },
+                    }
+                end,
+            },
         },
     })
 end
