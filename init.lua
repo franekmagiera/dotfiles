@@ -150,179 +150,177 @@ vim.g.markdown_fenced_languages = {
 --------------
 -- Plugins. --
 --------------
-if (not vim.g.vscode) then
-    -- Bootstrap lazy.nvim
-    local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-    if not (vim.uv or vim.loop).fs_stat(lazypath) then
-        local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-        local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-        if vim.v.shell_error ~= 0 then
-            vim.api.nvim_echo({
-                { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-                { out, "WarningMsg" },
-                { "\nPress any key to exit..." },
-            }, true, {})
-            vim.fn.getchar()
-            os.exit(1)
-        end
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out, "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
     end
-    vim.opt.rtp:prepend(lazypath)
+end
+vim.opt.rtp:prepend(lazypath)
 
-    require("lazy").setup({
-        spec = {
-            {
-                'sainnhe/gruvbox-material',
-                lazy = false,
-                priority = 1000,
-                config = function()
-                    vim.g.gruvbox_material_disable_italic_comment = true
-                    vim.cmd.colorscheme('gruvbox-material')
-                end
-            },
-            {
-                'ggandor/leap.nvim',
-                config = function()
-                    require('leap').create_default_mappings()
-                end
-            },
-            {
-                'andymass/vim-matchup',
-                config = function()
-                    vim.g.matchup_matchparen_offscreen = { method = "popup" }
-                end
-            },
-            {
-                "ibhagwan/fzf-lua",
-                -- optional for icon support
-                dependencies = { "nvim-tree/nvim-web-devicons" },
-                -- or if using mini.icons/mini.nvim
-                -- dependencies = { "echasnovski/mini.icons" },
-                opts = {}
-            },
-            {
-                'echasnovski/mini.pairs',
-                event = 'VeryLazy',
-                version = 'false',
-                opts = {}
-            },
-            {
-                'lewis6991/gitsigns.nvim',
-                lazy = false,
-                opts = {}
-            },
-            {
-                'nvim-lualine/lualine.nvim',
-                dependencies = { 'nvim-tree/nvim-web-devicons' },
-                options = { theme = 'gruvbox' },
-                config = function()
-                    require("lualine").setup()
-                end,
-            },
-            {
-                'neovim/nvim-lspconfig',
-                config = function()
-                    vim.lsp.enable('clangd')
-                    -- vim.lsp.enable('denols')
-                    vim.lsp.enable('pyright')
-                    vim.lsp.enable('ts_ls')
+require("lazy").setup({
+    spec = {
+        {
+            'sainnhe/gruvbox-material',
+            lazy = false,
+            priority = 1000,
+            config = function()
+                vim.g.gruvbox_material_disable_italic_comment = true
+                vim.cmd.colorscheme('gruvbox-material')
+            end
+        },
+        {
+            'ggandor/leap.nvim',
+            config = function()
+                require('leap').create_default_mappings()
+            end
+        },
+        {
+            'andymass/vim-matchup',
+            config = function()
+                vim.g.matchup_matchparen_offscreen = { method = "popup" }
+            end
+        },
+        {
+            "ibhagwan/fzf-lua",
+            -- optional for icon support
+            dependencies = { "nvim-tree/nvim-web-devicons" },
+            -- or if using mini.icons/mini.nvim
+            -- dependencies = { "echasnovski/mini.icons" },
+            opts = {}
+        },
+        {
+            'echasnovski/mini.pairs',
+            event = 'VeryLazy',
+            version = 'false',
+            opts = {}
+        },
+        {
+            'lewis6991/gitsigns.nvim',
+            lazy = false,
+            opts = {}
+        },
+        {
+            'nvim-lualine/lualine.nvim',
+            dependencies = { 'nvim-tree/nvim-web-devicons' },
+            options = { theme = 'gruvbox' },
+            config = function()
+                require("lualine").setup()
+            end,
+        },
+        {
+            'neovim/nvim-lspconfig',
+            config = function()
+                vim.lsp.enable('clangd')
+                -- vim.lsp.enable('denols')
+                vim.lsp.enable('pyright')
+                vim.lsp.enable('ts_ls')
 
-                    -- Kemaps.
-                    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-                    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-			        vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-                    vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist)
-                    vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition)
-                    vim.keymap.set('n', 'K', vim.lsp.buf.hover)
-                    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-                    vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename)
-                    vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action)
-                    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-                    vim.keymap.set('n', '<leader>f', function()
-                        vim.lsp.buf.format { async = true }
-                    end, opts)
-                end
-            },
-            -- Inline function signatures.
-            {
-                "ray-x/lsp_signature.nvim",
-                event = "VeryLazy",
-                opts = {
-                    hint_prefix = {
-                        above = "↙ ",  -- when the hint is on the line above the current line
-                        current = "← ",  -- when the hint is on the same line
-                        below = "↖ "  -- when the hint is on the line below the current line
-                    },
+                -- Kemaps.
+                vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+                vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+                vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+                vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist)
+                vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition)
+                vim.keymap.set('n', 'K', vim.lsp.buf.hover)
+                vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+                vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename)
+                vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action)
+                vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+                vim.keymap.set('n', '<leader>f', function()
+                    vim.lsp.buf.format { async = true }
+                end, opts)
+            end
+        },
+        -- Inline function signatures.
+        {
+            "ray-x/lsp_signature.nvim",
+            event = "VeryLazy",
+            opts = {
+                hint_prefix = {
+                    above = "↙ ",  -- when the hint is on the line above the current line
+                    current = "← ",  -- when the hint is on the same line
+                    below = "↖ "  -- when the hint is on the line below the current line
                 },
-            },
-            -- LSP-based code-completion.
-            {
-                "hrsh7th/nvim-cmp",
-                -- Load cmp on InsertEnter.
-                event = "InsertEnter",
-                -- Dependencies are always lazy-loaded unless specified otherwise.
-                dependencies = {
-                    'neovim/nvim-lspconfig',
-                    "hrsh7th/cmp-nvim-lsp",
-                    "hrsh7th/cmp-buffer",
-                    "hrsh7th/cmp-path",
-                },
-                config = function()
-                    local cmp = require'cmp'
-                    cmp.setup({
-                        snippet = {
-                            -- nvim-cmp requires a snippet engine.
-                            expand = function(args)
-                                vim.snippet.expand(args.body)
-                            end,
-                        },
-                        mapping = cmp.mapping.preset.insert({
-                            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-                            ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                            ['<C-Space>'] = cmp.mapping.complete(),
-                            ['<C-e>'] = cmp.mapping.abort(),
-                            -- Accept currently selected item.
-                            -- Set `select` to `false` to only confirm explicitly selected items.
-                            ['<CR>'] = cmp.mapping.confirm({ select = true }),
-                        }),
-                        sources = cmp.config.sources({
-                            { name = 'nvim_lsp' },
-                        }, {
-                            { name = 'path' },
-                        }),
-                        experimental = {
-                            ghost_text = true,
-                        },
-                    })
-
-                    -- Enable completing paths in :
-                    cmp.setup.cmdline(':', {
-                        sources = cmp.config.sources({
-                            { name = 'path' }
-                        })
-                    })
-                end
-            },
-            -- Treesitter for better syntax highlighting.
-            {
-                "nvim-treesitter/nvim-treesitter",
-                branch = 'master',
-                lazy = false,
-                build = ":TSUpdate",
-                config = function()
-                    local configs = require 'nvim-treesitter.configs'
-                    configs.setup {
-                        ensure_installed = {
-                            'python',
-                        },
-                        highlight = {
-                            enable = true
-                        },
-                    }
-                end,
             },
         },
-    })
-end
+        -- LSP-based code-completion.
+        {
+            "hrsh7th/nvim-cmp",
+            -- Load cmp on InsertEnter.
+            event = "InsertEnter",
+            -- Dependencies are always lazy-loaded unless specified otherwise.
+            dependencies = {
+                'neovim/nvim-lspconfig',
+                "hrsh7th/cmp-nvim-lsp",
+                "hrsh7th/cmp-buffer",
+                "hrsh7th/cmp-path",
+            },
+            config = function()
+                local cmp = require'cmp'
+                cmp.setup({
+                    snippet = {
+                        -- nvim-cmp requires a snippet engine.
+                        expand = function(args)
+                            vim.snippet.expand(args.body)
+                        end,
+                    },
+                    mapping = cmp.mapping.preset.insert({
+                        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                        ['<C-Space>'] = cmp.mapping.complete(),
+                        ['<C-e>'] = cmp.mapping.abort(),
+                        -- Accept currently selected item.
+                        -- Set `select` to `false` to only confirm explicitly selected items.
+                        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                    }),
+                    sources = cmp.config.sources({
+                        { name = 'nvim_lsp' },
+                    }, {
+                        { name = 'path' },
+                    }),
+                    experimental = {
+                        ghost_text = true,
+                    },
+                })
+
+                -- Enable completing paths in :
+                cmp.setup.cmdline(':', {
+                    sources = cmp.config.sources({
+                        { name = 'path' }
+                    })
+                })
+            end
+        },
+        -- Treesitter for better syntax highlighting.
+        {
+            "nvim-treesitter/nvim-treesitter",
+            branch = 'master',
+            lazy = false,
+            build = ":TSUpdate",
+            config = function()
+                local configs = require 'nvim-treesitter.configs'
+                configs.setup {
+                    ensure_installed = {
+                        'python',
+                    },
+                    highlight = {
+                        enable = true
+                    },
+                }
+            end,
+        },
+    },
+})
 
 -- Python.
 vim.g.python3_host_prog = '~/.pyenv/shims/python3'
