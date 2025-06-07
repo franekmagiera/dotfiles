@@ -221,9 +221,9 @@ require("lazy").setup({
             'neovim/nvim-lspconfig',
             config = function()
                 vim.lsp.enable('clangd')
-                -- vim.lsp.enable('denols')
+                vim.lsp.enable('denols')
                 vim.lsp.enable('pyright')
-                vim.lsp.enable('ts_ls')
+                -- vim.lsp.enable('ts_ls')
 
                 -- Kemaps.
                 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
@@ -236,7 +236,7 @@ require("lazy").setup({
                 vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename)
                 vim.keymap.set({ 'n', 'v' }, '<leader>a', vim.lsp.buf.code_action)
                 vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-                vim.keymap.set('n', '<leader>f', function()
+                vim.keymap.set('n', '<leader>=', function()
                     vim.lsp.buf.format { async = true }
                 end, opts)
             end
