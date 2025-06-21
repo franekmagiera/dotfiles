@@ -8,6 +8,17 @@ abbr -a gdc 'git diff --cached'
 abbr -a gdt 'git difftool'
 abbr -a tree 'tree -C'
 
+if command -v eza > /dev/null
+	abbr -a l 'eza'
+	abbr -a ls 'eza'
+	abbr -a ll 'eza -l'
+	abbr -a lll 'eza -la'
+else
+	abbr -a l 'ls'
+	abbr -a ll 'ls -l'
+	abbr -a lll 'ls -la'
+end
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
